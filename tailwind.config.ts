@@ -11,6 +11,8 @@ const config: Config = {
       dark: '#1E1E27',
       greyLight: '#313442',
       grey: '#30313C',
+      categoryBg: '#24252E',
+      categoryBorder: '#323443',
       whiteDark: '#696969',
       white: '#9B9D9F',
       whiteSuper: '#FFFFFF',
@@ -26,6 +28,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         'gradient-purple':
           'linear-gradient(104deg, #A139FD 11.26%, #50BDFC 90.79%)',
+        'gradient-purple-reversed':
+          'linear-gradient(104deg, #50BDFC 11.26%, #A139FD 90.79%)',
       },
       spacing: {
         '3.75': '0.9375rem',

@@ -5,7 +5,7 @@ import { SearchInput } from '@/app/_components/SearchInput/SearchInput'
 
 export const Header: React.FC = () => {
   return (
-    <header className="flex justify-between py-18 border-b border-b-1 border-greyLight">
+    <header className="flex flex-col items-center sm:flex-row sm:justify-between py-18">
       <Logo />
       <SearchInput />
     </header>
