@@ -8,7 +8,7 @@ interface ICategory {
   isOn: boolean
 }
 
-export const Category: React.FC<ICategory> = ({ name, isOn = false }) => {
+export const Category: React.FC<ICategory> = ({ name, isOn = true }) => {
   return (
     <div className="rounded h-[50px] border-2 border-categoryBorder bg-categoryBg px-5 py-3">
       <div className="flex justify-between">
