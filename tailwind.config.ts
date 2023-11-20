@@ -17,6 +17,7 @@ const config: Config = {
       white: '#9B9D9F',
       whiteSuper: '#FFFFFF',
       purple: '#884DFE',
+      green: '#45CB54',
     },
     fontSize: {
       '32': '2rem',

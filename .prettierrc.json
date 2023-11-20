@@ -4,5 +4,6 @@
   "endOfLine": "crlf",
   "indent_size": 2,
   "printWidth": 80,
-  "semi": false
+  "semi": false,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
