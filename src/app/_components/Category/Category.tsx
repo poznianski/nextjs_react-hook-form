@@ -9,12 +9,23 @@ export interface ICategory {
   isOn: boolean
 }
 
-export const Category: React.FC<ICategory> = ({ name, isOn }) => {
+export interface ICategoryWithDelete extends ICategory {
+  onDelete: (id: string) => void
+}
+export const Category: React.FC<ICategoryWithDelete> = ({
+  name,
+  isOn,
+  id,
+  onDelete,
+}) => {
   return (
     <div className="flex h-[50px] justify-between rounded border-2 border-categoryBorder bg-categoryBg px-5 py-3">
       <Text className="text-white"> {name}</Text>
 
-      <CategoryButtons />
+      <CategoryButtons
+        isOn={isOn}
+        onDelete={() => onDelete(id)}
+      />
     </div>
   )
 }

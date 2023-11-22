@@ -1,15 +1,21 @@
 import Image from 'next/image'
 import React from 'react'
 
-export const SearchInput: React.FC = () => {
+export interface ISearchInput {
+  onSearchChange: () => void
+}
+
+export const SearchInput: React.FC<ISearchInput> = ({ onSearchChange }) => {
   return (
     <div style={{ maxWidth: '380px', minWidth: '280px', width: '100%' }}>
       <div className="relative h-[40px]">
         <input
           placeholder="Search"
-          className="bg-grey py-2.5 px-5 rounded pr-10 w-full outline-none"
+          className="w-full rounded bg-grey px-5 py-2.5 pr-10 outline-none"
+          onChange={onSearchChange}
         />
-        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
           <Image
             alt="search icon"
             src="/icons/search.svg"
