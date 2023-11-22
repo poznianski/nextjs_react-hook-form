@@ -11,6 +11,7 @@ const config: Config = {
       dark: '#1E1E27',
       greyLight: '#313442',
       grey: '#30313C',
+      greyDelete: '#272934',
       categoryBg: '#24252E',
       categoryBorder: '#323443',
       whiteDark: '#696969',
@@ -18,6 +19,7 @@ const config: Config = {
       whiteSuper: '#FFFFFF',
       purple: '#884DFE',
       green: '#45CB54',
+      red: '#FF5B5B',
     },
     fontSize: {
       '32': '2rem',

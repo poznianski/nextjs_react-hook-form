@@ -4,7 +4,8 @@ import { CategoryButtons } from '@/app/_components/CategoryButtons/CategoryButto
 import { Text } from '@/app/_components/Text/Text'
 
 export interface ICategory {
-  name?: string
+  id: string
+  name: string
   isOn: boolean
 }
 

@@ -1,8 +1,12 @@
 import { ICategory } from '@/app/_components/Category/Category'
 
-const categories: ICategory[] = [{ name: 'alalal', isOn: true }]
+const categories: ICategory[] = [
+  { name: 'newCategory', id: '123123123', isOn: false },
+]
 
-export const GET = () => Response.json(categories)
+export const GET = () => {
+  return Response.json(categories)
+}
 
 export const POST = async (request: Request) => {
   const newCategory = await request.json()
