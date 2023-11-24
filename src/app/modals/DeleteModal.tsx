@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React, { useRef } from 'react'
 
 import { Button } from '@/app/_components/Button/Button'
@@ -21,30 +22,51 @@ export const DeleteModal: React.FC<IDeleteModal> = ({ onClose, onConfirm }) => {
       ></div>
 
       <div
-        className="fixed left-1/2 top-1/2 z-10 flex translate-x-[-50%] translate-y-[-50%] items-center justify-center bg-greyDelete p-6"
+        className="fixed left-1/2 top-1/2 z-10 flex translate-x-[-50%] translate-y-[-50%]
+        items-center justify-center rounded bg-greyDelete px-6 py-8"
         ref={modalRef}
       >
-        <div className="flex w-[286px] flex-col gap-6">
-          <h3 className="text-center text-white">Delete the Category?</h3>
+        <div className="w-max-[400px] flex flex-col gap-6">
+          <div
+            className="absolute right-7"
+            onClick={onClose}
+          >
+            <Image
+              src="icons/close.svg"
+              alt="cross"
+              width={10}
+              height={10}
+              className="cursor-pointer hover:scale-125"
+            />
+          </div>
 
-          <Text className="text-center text-white">
-            All templates in the category will be moved to the category
-            &quot;Other&quot;
+          <Text className="text-center text-24 font-medium text-whiteSuper">
+            Delete the Category?
           </Text>
 
-          <Button
-            name={'Delete'}
-            icon="delete"
-            color="purple"
-            onClick={onConfirm}
-          />
+          <div className="flex justify-center px-3">
+            <Text className="text-center text-20 font-normal text-white">
+              All templates in the category will be moved to the category
+              &quot;Other&quot;
+            </Text>
+          </div>
 
-          <Button
-            name={'Cancel'}
-            color="none"
-            className="text-red"
-            onClick={onClose}
-          />
+          <div>
+            <Button
+              name={'Delete'}
+              icon="delete"
+              color="purple"
+              onClick={onConfirm}
+            />
+
+            <Button
+              name={'Cancel'}
+              color="none"
+              className="text-red"
+              onClick={onClose}
+              danger
+            />
+          </div>
         </div>
       </div>
     </>

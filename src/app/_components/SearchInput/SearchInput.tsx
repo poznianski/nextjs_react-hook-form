@@ -11,7 +11,7 @@ export const SearchInput: React.FC<ISearchInput> = ({ onSearchChange }) => {
       <div className="relative h-[40px]">
         <input
           placeholder="Search"
-          className="w-full rounded bg-grey px-5 py-2.5 pr-10 outline-none"
+          className="w-full rounded bg-grey px-5 py-2.5 pr-10 text-white outline-none placeholder:text-white"
           onChange={onSearchChange}
         />
 

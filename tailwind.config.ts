@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     colors: {
       dark: '#1E1E27',
+      darkDim: '#15161b',
       greyLight: '#313442',
       grey: '#30313C',
       greyDelete: '#272934',
@@ -23,6 +24,8 @@ const config: Config = {
     },
     fontSize: {
       '32': '2rem',
+      '24': '1.5rem',
+      '20': '1.25rem',
     },
     extend: {
       backgroundImage: {

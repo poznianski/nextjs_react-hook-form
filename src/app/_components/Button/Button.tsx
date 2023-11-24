@@ -11,6 +11,8 @@ interface IButton {
   icon?: 'plus' | 'delete' | 'edit' | 'success'
   color: 'purple' | 'green' | 'danger' | 'none'
   type?: 'button' | 'submit'
+  danger?: boolean
+  border?: boolean
 }
 
 export const Button: React.FC<IButton> = ({
@@ -20,6 +22,8 @@ export const Button: React.FC<IButton> = ({
   icon,
   color,
   type = 'submit',
+  danger,
+  border,
 }) => {
   const getIcon = (icon: string) => {
     switch (icon) {
@@ -45,7 +49,7 @@ export const Button: React.FC<IButton> = ({
       case 'purple':
         return 'bg-gradient-purple'
       default:
-        return 'border-2 border-grey'
+        return ''
     }
   }
 
@@ -55,7 +59,9 @@ export const Button: React.FC<IButton> = ({
       onClick={onClick}
       className={`inline-flex h-[50px] w-full items-center justify-center gap-2
        rounded ${getBg(color)} transition-all ease-in-out
-       hover:bg-gradient-purple-reversed hover:delay-1000 ${className}`}
+       hover:bg-gradient-purple-reversed hover:delay-1000 ${className} ${
+         border ? 'border-2 border-grey' : ''
+       }`}
     >
       {icon && (
         <Image
@@ -66,7 +72,9 @@ export const Button: React.FC<IButton> = ({
         />
       )}
 
-      <Text className="font-bold text-white">{name}</Text>
+      <Text className={`${danger ? 'text-red' : 'font-bold text-white'}`}>
+        {name}
+      </Text>
     </button>
   )
 }

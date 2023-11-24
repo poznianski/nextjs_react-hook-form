@@ -67,12 +67,14 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
           color="green"
           className="h-[60px]"
         />
+
         <Button
           type="button"
-          onClick={() => reset()}
+          onClick={() => closeForm()}
           name={'Cancel'}
           className="h-[60px]"
           color="none"
+          border
         />
       </div>
     </form>
