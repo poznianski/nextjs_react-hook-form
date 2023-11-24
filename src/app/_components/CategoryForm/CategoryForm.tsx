@@ -22,7 +22,6 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
     reset,
     formState: { errors },
   } = useForm<ICategory>()
-  const [isOn, setIsOn] = useState(false)
 
   const onSubmit = async (data: ICategory) => {
     try {

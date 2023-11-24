@@ -55,8 +55,22 @@ export const CategoriesList: React.FC = () => {
     setShowForm(false)
   }
 
+  const toggleCategoryOn = (categoryId: string) => {
+    const updatedCategories = categories.map((category) =>
+      categoryId === category.id
+        ? { ...category, isOn: !category.isOn }
+        : category,
+    )
+
+    setCategories(updatedCategories)
+    localStorage.setItem('categories', JSON.stringify(updatedCategories))
+  }
+
   return (
-    <div className="mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col gap-3 px-4 pt-10">
+    <div
+      className="mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col
+     gap-3 px-4 pt-10"
+    >
       <Button
         onClick={openForm}
         name={'Create a category'}
@@ -74,8 +88,9 @@ export const CategoriesList: React.FC = () => {
       {filteredCategories.map((category) => (
         <Category
           key={category.id}
-          onDelete={() => handleDeleteClick(category.id)}
           {...category}
+          onDelete={() => handleDeleteClick(category.id)}
+          onToggle={() => toggleCategoryOn(category.id)}
         />
       ))}
 
