@@ -72,7 +72,7 @@ export const Button: React.FC<IButton> = ({
         />
       )}
 
-      <Text className={`${danger ? 'text-red' : 'font-bold text-white'}`}>
+      <Text className={`${danger ? 'text-red' : 'font-bold text-whiteSuper'}`}>
         {name}
       </Text>
     </button>
