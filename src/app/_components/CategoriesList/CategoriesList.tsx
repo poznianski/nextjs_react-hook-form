@@ -1,4 +1,10 @@
 'use client'
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from '@hello-pangea/dnd'
 import React, { useContext, useEffect, useState } from 'react'
 
 import { Button } from '@/app/_components/Button/Button'
@@ -66,40 +72,88 @@ export const CategoriesList: React.FC = () => {
     localStorage.setItem('categories', JSON.stringify(updatedCategories))
   }
 
+  const onDragEnd = (result: DropResult) => {
+    if (!result.destination) return
+
+    const reorderedCategories = Array.from(categories)
+    const [removed] = reorderedCategories.splice(result.source.index, 1)
+    reorderedCategories.splice(result.destination.index, 0, removed)
+
+    reorderedCategories.forEach((cat, index) => {
+      cat.order = index
+    })
+
+    setCategories(reorderedCategories)
+    localStorage.setItem('categories', JSON.stringify(reorderedCategories))
+  }
+
+  const getStyle = () => ({ marginBottom: '12px' })
+
   return (
-    <div
-      className="mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col
-     gap-3 px-4 pt-10"
-    >
-      <Button
-        onClick={openForm}
-        name={'Create a category'}
-        icon="plus"
-        color="purple"
-      />
-
-      {showForm && (
-        <CategoryForm
-          addCategory={addCategory}
-          closeForm={closeForm}
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col gap-3 px-4 pt-10">
+        <Button
+          onClick={openForm}
+          name={'Create a category'}
+          icon="plus"
+          color="purple"
         />
-      )}
 
-      {filteredCategories.map((category) => (
-        <Category
-          key={category.id}
-          {...category}
-          onDelete={() => handleDeleteClick(category.id)}
-          onToggle={() => toggleCategoryOn(category.id)}
-        />
-      ))}
+        {showForm ? (
+          <CategoryForm
+            addCategory={addCategory}
+            closeForm={closeForm}
+          />
+        ) : (
+          <div style={{ display: 'none' }}>
+            <CategoryForm
+              addCategory={addCategory}
+              closeForm={closeForm}
+            />
+          </div>
+        )}
 
-      {showDeleteModal && (
-        <DeleteModal
-          onClose={() => setShowDeleteModal(false)}
-          onConfirm={() => confirmDelete(selectedCategory as string)}
-        />
-      )}
-    </div>
+        <Droppable droppableId="droppable">
+          {(provided) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              // className="flex flex-col gap-3"
+            >
+              {categories.map((category, index) => (
+                <Draggable
+                  key={category.id}
+                  draggableId={category.id}
+                  index={index}
+                >
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      // style={getStyle()}
+                    >
+                      <Category
+                        {...category}
+                        onDelete={() => handleDeleteClick(category.id)}
+                        onToggle={() => toggleCategoryOn(category.id)}
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+
+        {showDeleteModal && (
+          <DeleteModal
+            onClose={() => setShowDeleteModal(false)}
+            onConfirm={() => confirmDelete(selectedCategory as string)}
+          />
+        )}
+      </div>
+    </DragDropContext>
   )
 }

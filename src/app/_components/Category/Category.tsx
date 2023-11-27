@@ -7,6 +7,7 @@ export interface ICategory {
   id: string
   name: string
   isOn: boolean
+  order: number
 }
 
 export interface ICategoryActions extends ICategory {
@@ -22,8 +23,8 @@ export const Category: React.FC<ICategoryActions> = ({
 }) => {
   return (
     <div
-      className="flex h-[50px] justify-between rounded border-2
-    border-categoryBorder bg-categoryBg px-5 py-3"
+      className="mb-3 flex h-[50px] justify-between rounded
+    border-2 border-categoryBorder bg-categoryBg px-5 py-3"
     >
       <Text className="text-white"> {name}</Text>
 
