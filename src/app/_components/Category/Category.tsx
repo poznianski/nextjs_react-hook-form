@@ -7,12 +7,12 @@ export interface ICategory {
   id: string
   name: string
   isOn: boolean
-  order: number
+  base?: boolean
 }
 
 export interface ICategoryActions extends ICategory {
-  onDelete: (id: string) => void
-  onToggle: (id: string) => void
+  onDelete?: (id: string) => void
+  onToggle?: (id: string) => void
 }
 export const Category: React.FC<ICategoryActions> = ({
   name,
@@ -21,6 +21,8 @@ export const Category: React.FC<ICategoryActions> = ({
   onDelete,
   onToggle,
 }) => {
+  const base = id === 'others'
+
   return (
     <div
       className="mb-3 flex h-[50px] justify-between rounded
@@ -30,8 +32,9 @@ export const Category: React.FC<ICategoryActions> = ({
 
       <CategoryButtons
         isOn={isOn}
-        onDelete={() => onDelete(id)}
-        onToggle={() => onToggle(id)}
+        onDelete={() => (onDelete ? onDelete(id) : undefined)}
+        onToggle={() => (onToggle ? onToggle(id) : undefined)}
+        base={base}
       />
     </div>
   )

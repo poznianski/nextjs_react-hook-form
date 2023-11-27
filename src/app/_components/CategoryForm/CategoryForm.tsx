@@ -48,15 +48,15 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
-        className={`flex h-[50px] justify-between rounded border-2 
-      border-categoryBorder bg-categoryBg px-5 py-3 ${
+        className={`mb-3 flex h-[50px] justify-between rounded 
+      border-2 border-categoryBorder bg-categoryBg px-5 py-3 ${
         errors.name ? 'border-red' : ''
       }`}
       >
         <input
           {...register('name', { required: 'Name cannot be empty' })}
           placeholder="Enter Category Name"
-          className="bg-categoryBg text-white outline-none"
+          className="mb-2 bg-categoryBg text-white outline-none"
         />
 
         <CategoryButtons />

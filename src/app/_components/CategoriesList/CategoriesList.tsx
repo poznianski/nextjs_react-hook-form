@@ -14,10 +14,17 @@ import { CategoryContext } from '@/app/contexts/CategoryContext/CategoryContext'
 import { DeleteModal } from '@/app/modals/DeleteModal'
 
 export const CategoriesList: React.FC = () => {
-  const [categories, setCategories] = useState<ICategory[]>([])
+  const [categories, setCategories] = useState<ICategory[]>([
+    { id: 'others', name: 'Others', isOn: true },
+  ])
   const [showForm, setShowForm] = useState<boolean>(false)
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [othersCategory, setOthersCategory] = useState<ICategory>({
+    id: 'others',
+    name: 'Others',
+    isOn: true,
+  })
   const { searchQuery } = useContext(CategoryContext)
 
   const filteredCategories = categories.filter((category) =>
@@ -32,7 +39,15 @@ export const CategoriesList: React.FC = () => {
     const storedCategories = localStorage.getItem('categories')
 
     if (storedCategories) {
-      setCategories(JSON.parse(storedCategories))
+      const loadedCategories: ICategory[] = JSON.parse(storedCategories)
+      if (!loadedCategories.find((cat) => cat.id === 'others')) {
+        loadedCategories.push({ id: 'others', name: 'Others', isOn: true })
+        setCategories(loadedCategories)
+      } else {
+        setCategories(loadedCategories)
+      }
+    } else {
+      setCategories([{ id: 'others', name: 'Others', isOn: true }])
     }
   }, [])
 
@@ -87,7 +102,7 @@ export const CategoriesList: React.FC = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div
-        className="container mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col gap-3
+        className="container mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col
           px-4 pt-10 sm:px-6 lg:px-8"
       >
         <Button
@@ -95,6 +110,7 @@ export const CategoriesList: React.FC = () => {
           name={'Create a category'}
           icon="plus"
           color="purple"
+          className="mb-3"
         />
 
         {showForm ? (
