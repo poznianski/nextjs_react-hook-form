@@ -13,6 +13,8 @@ const config: Config = {
       greyLight: '#313442',
       grey: '#30313C',
       greyDelete: '#272934',
+      greyCancel: '#2E2F3C',
+      greyBorder: '#424454',
       categoryBg: '#24252E',
       categoryBorder: '#323443',
       whiteDark: '#696969',
@@ -40,6 +42,7 @@ const config: Config = {
       spacing: {
         '3.75': '0.9375rem',
         '18': '1.125rem',
+        '6.5': '1.625rem',
       },
     },
   },

@@ -117,7 +117,7 @@ export const CategoriesList: React.FC = () => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {categories.map((category, index) => (
+              {filteredCategories.map((category, index) => (
                 <Draggable
                   key={category.id}
                   draggableId={category.id}

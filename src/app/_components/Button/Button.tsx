@@ -60,7 +60,7 @@ export const Button: React.FC<IButton> = ({
       className={`inline-flex h-[50px] w-full items-center justify-center gap-2
        rounded ${getBg(color)} transition-all ease-in-out
        hover:bg-gradient-purple-reversed hover:delay-1000 ${className} ${
-         border ? 'border-2 border-grey' : ''
+         border ? 'border-greyBorder border-2' : ''
        }`}
     >
       {icon && (

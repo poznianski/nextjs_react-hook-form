@@ -48,7 +48,7 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
-        className={`mb-2 flex h-[50px] justify-between rounded border-2 
+        className={`flex h-[50px] justify-between rounded border-2 
       border-categoryBorder bg-categoryBg px-5 py-3 ${
         errors.name ? 'border-red' : ''
       }`}
@@ -64,22 +64,24 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
 
       {errors.name && <p className="m-1 text-red">{errors.name.message}</p>}
 
-      <div className="flex flex-col gap-2">
-        <Button
-          name={'Save Changes'}
-          icon="success"
-          color="green"
-          className="h-[60px]"
-        />
+      <div className="bg-gre bg-greyCancel fixed bottom-0 left-0 w-screen py-5">
+        <div className="sm:gap-6.5 container mx-auto flex flex-col gap-2 sm:flex-row">
+          <Button
+            name={'Save Changes'}
+            icon="success"
+            color="green"
+            className="h-[60px]"
+          />
 
-        <Button
-          type="button"
-          onClick={() => closeForm()}
-          name={'Cancel'}
-          className="h-[60px]"
-          color="none"
-          border
-        />
+          <Button
+            type="button"
+            onClick={() => closeForm()}
+            name={'Cancel'}
+            className="h-[60px]"
+            color="none"
+            border
+          />
+        </div>
       </div>
     </form>
   )
