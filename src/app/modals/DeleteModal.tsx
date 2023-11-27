@@ -22,11 +22,11 @@ export const DeleteModal: React.FC<IDeleteModal> = ({ onClose, onConfirm }) => {
       ></div>
 
       <div
-        className="fixed left-1/2 top-1/2 z-10 flex translate-x-[-50%] translate-y-[-50%]
-        items-center justify-center rounded bg-greyDelete px-6 py-8"
+        className="fixed left-1/2 top-1/2 z-10 flex w-[300px] translate-x-[-50%]
+         translate-y-[-50%] items-center justify-center rounded bg-greyDelete px-6 py-8 sm:w-[400px]"
         ref={modalRef}
       >
-        <div className="w-max-[400px] flex flex-col gap-6">
+        <div className="flex flex-col gap-6">
           <div
             className="absolute right-7"
             onClick={onClose}

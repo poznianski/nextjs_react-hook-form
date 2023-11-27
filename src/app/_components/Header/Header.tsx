@@ -9,7 +9,10 @@ export const Header: React.FC = () => {
   const { handleSearchChange } = useContext(CategoryContext)
 
   return (
-    <header className="flex flex-col items-center py-18 sm:flex-row sm:justify-between">
+    <header
+      className="container mx-auto flex flex-col items-center px-4 py-18
+        sm:flex-row sm:justify-between sm:px-6 lg:px-8"
+    >
       <Logo />
       <SearchInput onSearchChange={handleSearchChange} />
     </header>

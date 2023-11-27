@@ -8,13 +8,11 @@ import { CategoryProvider } from '@/app/contexts/CategoryContext/CategoryContext
 export default function Home() {
   return (
     <CategoryProvider>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <Header />
-      </div>
+      <Header />
 
       <Separator />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="">
         <CategoriesList />
       </div>
     </CategoryProvider>

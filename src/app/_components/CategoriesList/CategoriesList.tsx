@@ -39,6 +39,7 @@ export const CategoriesList: React.FC = () => {
   const addCategory = (newCategory: ICategory) => {
     const updatedCategories = [...categories, newCategory]
     setCategories(updatedCategories)
+
     localStorage.setItem('categories', JSON.stringify(updatedCategories))
   }
 
@@ -79,19 +80,16 @@ export const CategoriesList: React.FC = () => {
     const [removed] = reorderedCategories.splice(result.source.index, 1)
     reorderedCategories.splice(result.destination.index, 0, removed)
 
-    reorderedCategories.forEach((cat, index) => {
-      cat.order = index
-    })
-
     setCategories(reorderedCategories)
     localStorage.setItem('categories', JSON.stringify(reorderedCategories))
   }
 
-  const getStyle = () => ({ marginBottom: '12px' })
-
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col gap-3 px-4 pt-10">
+      <div
+        className="container mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col gap-3
+          px-4 pt-10 sm:px-6 lg:px-8"
+      >
         <Button
           onClick={openForm}
           name={'Create a category'}
@@ -118,7 +116,6 @@ export const CategoriesList: React.FC = () => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              // className="flex flex-col gap-3"
             >
               {categories.map((category, index) => (
                 <Draggable
@@ -131,7 +128,6 @@ export const CategoriesList: React.FC = () => {
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
-                      // style={getStyle()}
                     >
                       <Category
                         {...category}
