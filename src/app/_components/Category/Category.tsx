@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 import { CategoryButtons } from '@/app/_components/CategoryButtons/CategoryButtons'
@@ -7,7 +8,6 @@ export interface ICategory {
   id: string
   name: string
   isOn: boolean
-  base?: boolean
 }
 
 export interface ICategoryActions extends ICategory {
@@ -25,16 +25,17 @@ export const Category: React.FC<ICategoryActions> = ({
 
   return (
     <div
-      className="mb-3 flex h-[50px] justify-between rounded
+      className="mb-2 flex h-[50px] justify-between rounded
     border-2 border-categoryBorder bg-categoryBg px-5 py-3"
     >
-      <Text className="text-white"> {name}</Text>
+      <Text className="text-white">{name}</Text>
 
       <CategoryButtons
         isOn={isOn}
         onDelete={() => (onDelete ? onDelete(id) : undefined)}
         onToggle={() => (onToggle ? onToggle(id) : undefined)}
         base={base}
+        id={id}
       />
     </div>
   )
