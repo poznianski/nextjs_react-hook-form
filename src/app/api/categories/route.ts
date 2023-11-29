@@ -45,13 +45,13 @@ router.post(async (req, res) => {
 router.delete((req, res) => {})
 
 export async function GET(request: NextRequest, ctx: RequestContext) {
-  return router.run(request, ctx)
+  return (await router.run(request, ctx)) as unknown as Promise<Response>
 }
 
 export async function PUT(request: NextRequest, ctx: RequestContext) {
-  return router.run(request, ctx)
+  return (await router.run(request, ctx)) as unknown as Promise<Response>
 }
 
 export async function POST(request: NextRequest, ctx: RequestContext) {
-  return router.run(request, ctx)
+  return (await router.run(request, ctx)) as unknown as Promise<Response>
 }
