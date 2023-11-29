@@ -7,8 +7,8 @@ export interface ISearchInput {
 
 export const SearchInput: React.FC<ISearchInput> = ({ onSearchChange }) => {
   return (
-    <div style={{ maxWidth: '380px', minWidth: '280px', width: '100%' }}>
-      <div className="relative h-[40px]">
+    <div className="w-full min-w-[280px] max-w-[380px]">
+      <div className="relative h-10">
         <input
           placeholder="Search"
           className="w-full rounded bg-grey px-5 py-2.5 pr-10 text-white outline-none placeholder:text-white"

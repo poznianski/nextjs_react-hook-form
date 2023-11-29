@@ -21,7 +21,7 @@ export const Category: React.FC<ICategoryActions> = ({
   onDelete,
   onToggle,
 }) => {
-  const base = id === 'others'
+  const base = id === 'other'
 
   return (
     <div

@@ -48,7 +48,7 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div
-        className={`mb-3 flex h-[50px] justify-between rounded 
+        className={`mb-3 flex h-[50px] items-center justify-between rounded 
       border-2 border-categoryBorder bg-categoryBg px-5 py-3 ${
         errors.name ? 'border-red' : ''
       }`}
@@ -56,7 +56,7 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
         <input
           {...register('name', { required: 'Name cannot be empty' })}
           placeholder="Enter Category Name"
-          className="mb-2 bg-categoryBg text-white outline-none"
+          className="bg-categoryBg text-white outline-none"
         />
 
         <CategoryButtons />
@@ -65,7 +65,7 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
       {errors.name && <p className="m-1 text-red">{errors.name.message}</p>}
 
       <div className="bg-gre bg-greyCancel fixed bottom-0 left-0 w-screen py-5">
-        <div className="sm:gap-6.5 container mx-auto flex flex-col gap-2 sm:flex-row">
+        <div className="sm:gap-6.5 container mx-auto flex flex-col gap-2 px-5 sm:flex-row">
           <Button
             name={'Save Changes'}
             icon="success"

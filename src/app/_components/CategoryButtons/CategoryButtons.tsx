@@ -8,7 +8,7 @@ interface ICategoryButtons {
   onDelete?: () => void
   onToggle?: () => void
   base?: boolean
-  id: string
+  id?: string
 }
 
 export const CategoryButtons: React.FC<ICategoryButtons> = ({

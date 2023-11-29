@@ -99,6 +99,10 @@ export const CategoriesList: React.FC = () => {
     }
   }
 
+  const toggleOthersOn = () => {
+    setOthersIsOn(!othersIsOn)
+  }
+
   return (
     <DndContext
       sensors={sensors}
@@ -142,6 +146,13 @@ export const CategoriesList: React.FC = () => {
               </SortableItem>
             ))}
         </SortableContext>
+
+        <Category
+          id={'other'}
+          name={'Other'}
+          isOn={othersIsOn}
+          onToggle={toggleOthersOn}
+        />
 
         {showDeleteModal && (
           <DeleteModal
