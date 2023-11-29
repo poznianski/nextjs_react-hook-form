@@ -14,6 +14,7 @@ export const Header: React.FC = () => {
         sm:flex-row sm:justify-between sm:px-6 lg:px-8"
     >
       <Logo />
+
       <SearchInput onSearchChange={handleSearchChange} />
     </header>
   )
