@@ -30,29 +30,27 @@ export const CategoriesList: React.FC = () => {
   const [othersIsOn, setOthersIsOn] = useState(true)
   const { searchQuery } = useContext(CategoryContext)
 
-  const sensors = useSensors(
-    useSensor(MouseSensor),
-    useSensor(TouchSensor),
-    useSensor(KeyboardSensor),
-  )
-
-  const openForm = () => {
-    setShowForm(true)
-  }
-
   useEffect(() => {
     const storedCategories = localStorage.getItem('categories')
 
     if (storedCategories) {
       setCategories(JSON.parse(storedCategories))
     }
-  }, [setCategories])
+  }, [])
+
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
+  )
+
+  const updateCategories = (updatedCategories: ICategory[]) => {
+    setCategories(updatedCategories)
+    localStorage.setItem('categories', JSON.stringify(updatedCategories))
+  }
 
   const addCategory = (newCategory: ICategory) => {
-    const updatedCategories = [...categories, newCategory]
-    setCategories(updatedCategories)
-
-    localStorage.setItem('categories', JSON.stringify(updatedCategories))
+    updateCategories([...categories, newCategory])
   }
 
   const confirmDelete = (categoryId: string) => {
@@ -60,27 +58,23 @@ export const CategoriesList: React.FC = () => {
       (category) => category.id !== categoryId,
     )
 
-    setCategories(updatedCategories)
-    localStorage.setItem('categories', JSON.stringify(updatedCategories))
+    updateCategories(updatedCategories)
     setShowDeleteModal(false)
   }
 
   const handleDeleteClick = (categoryId: string) => {
-    console.log('delete pressed')
     setSelectedCategory(categoryId)
     setShowDeleteModal(true)
   }
 
   const toggleCategoryOn = (categoryId: string) => {
-    console.log('toggle pressed')
     const updatedCategories = categories.map((category) =>
       categoryId === category.id
         ? { ...category, isOn: !category.isOn }
         : category,
     )
 
-    setCategories(updatedCategories)
-    localStorage.setItem('categories', JSON.stringify(updatedCategories))
+    updateCategories(updatedCategories)
   }
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -111,7 +105,7 @@ export const CategoriesList: React.FC = () => {
       <div className="container mx-auto flex w-full min-w-[250px] max-w-[638px] flex-col px-4 pt-10 sm:px-6 lg:px-8">
         <Button
           onClick={() => setShowForm(true)}
-          name={'Create a category'}
+          name="Create a category"
           icon="plus"
           color="purple"
           className="mb-3"
@@ -132,32 +126,33 @@ export const CategoriesList: React.FC = () => {
             .filter((category) =>
               category.name.toLowerCase().includes(searchQuery.toLowerCase()),
             )
-            .map((category) => (
+            .map(({ id, ...rest }) => (
               <SortableItem
-                id={category.id}
-                key={category.id}
+                id={id}
+                key={id}
               >
                 <Category
-                  key={category.id}
-                  {...category}
-                  onDelete={(e) => handleDeleteClick(category.id)}
-                  onToggle={(e) => toggleCategoryOn(category.id)}
+                  key={id}
+                  id={id}
+                  {...rest}
+                  onDelete={() => handleDeleteClick(id)}
+                  onToggle={() => toggleCategoryOn(id)}
                 />
               </SortableItem>
             ))}
         </SortableContext>
 
         <Category
-          id={'other'}
-          name={'Other'}
+          id="other"
+          name="Other"
           isOn={othersIsOn}
           onToggle={toggleOthersOn}
         />
 
-        {showDeleteModal && (
+        {showDeleteModal && selectedCategory && (
           <DeleteModal
             onClose={() => setShowDeleteModal(false)}
-            onConfirm={() => confirmDelete(selectedCategory as string)}
+            onConfirm={() => confirmDelete(selectedCategory)}
           />
         )}
       </div>

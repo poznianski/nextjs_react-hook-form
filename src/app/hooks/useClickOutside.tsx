@@ -2,7 +2,7 @@ import { RefObject, useEffect } from 'react'
 
 export const useClickOutside = (
   ref: RefObject<HTMLElement | null>,
-  onClose: () => void,
+  handleClick: () => void,
 ): void => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
@@ -11,7 +11,7 @@ export const useClickOutside = (
         !ref.current.contains(event.target as Node) &&
         !(event.target as HTMLElement).classList.contains('dropdown-item')
       ) {
-        onClose()
+        handleClick()
       }
     }
 
@@ -20,5 +20,5 @@ export const useClickOutside = (
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [ref, onClose])
+  }, [ref, handleClick])
 }

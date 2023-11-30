@@ -12,9 +12,7 @@ export default function Home() {
 
       <Separator />
 
-      <div className="">
-        <CategoriesList />
-      </div>
+      <CategoriesList />
     </CategoryProvider>
   )
 }

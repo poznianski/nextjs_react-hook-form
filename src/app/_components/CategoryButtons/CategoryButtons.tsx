@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import SortableItemContext from '@/app/contexts/SortableItemContext/SortableItemContext'
 
@@ -16,26 +16,12 @@ export const CategoryButtons: React.FC<ICategoryButtons> = ({
   onDelete,
   onToggle,
   base,
-  id,
 }) => {
-  const handleButtonClick = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    action: any,
-  ) => {
-    event.stopPropagation()
-    event.preventDefault()
-    action()
-  }
-
   const { attributes, listeners, ref } = useContext(SortableItemContext)
 
   return (
     <div className="flex items-center gap-5">
-      <button
-        onClick={(e) =>
-          handleButtonClick(e, () => (onToggle ? onToggle() : undefined))
-        }
-      >
+      <button onClick={onToggle}>
         <Image
           src={isOn ? 'icons/on.svg' : 'icons/off.svg'}
           alt="tumbler"
@@ -46,11 +32,7 @@ export const CategoryButtons: React.FC<ICategoryButtons> = ({
 
       {!base && (
         <div className="flex gap-5">
-          <button
-            onClick={(e) =>
-              handleButtonClick(e, () => (onDelete ? onDelete() : undefined))
-            }
-          >
+          <button onClick={onDelete}>
             <Image
               src={'icons/delete.svg'}
               alt="delete"

@@ -25,11 +25,9 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
 
   const onSubmit = async (data: ICategory) => {
     try {
-      const id = uuidv4()
-
       const newCategory = {
         ...data,
-        id,
+        id: uuidv4(),
         isOn: false,
       }
 
@@ -64,10 +62,10 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
 
       {errors.name && <p className="m-1 text-red">{errors.name.message}</p>}
 
-      <div className="bg-gre bg-greyCancel fixed bottom-0 left-0 w-screen py-5">
-        <div className="sm:gap-6.5 container mx-auto flex flex-col gap-2 px-5 sm:flex-row">
+      <div className="bg-gre fixed bottom-0 left-0 w-screen bg-greyCancel py-5">
+        <div className="container mx-auto flex flex-col gap-2 px-5 sm:flex-row sm:gap-6.5">
           <Button
-            name={'Save Changes'}
+            name="Save Changes"
             icon="success"
             color="green"
             className="h-[60px]"
@@ -75,8 +73,8 @@ export const CategoryForm: React.FC<ICategoryForm> = ({
 
           <Button
             type="button"
-            onClick={() => closeForm()}
-            name={'Cancel'}
+            onClick={closeForm}
+            name="Cancel"
             className="h-[60px]"
             color="none"
             border
